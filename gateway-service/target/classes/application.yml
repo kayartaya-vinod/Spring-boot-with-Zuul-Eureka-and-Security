@@ -1,0 +1,40 @@
+server:
+   port: 8000
+
+spring:
+   application: 
+      name: gateway-service
+   datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost/northwind
+      username: root
+      password: Welcome#123
+   jpa:
+      hibernate.ddl-auto: none
+eureka:
+   client:
+      registerWithEureka: true
+      fetchRegistry: true
+      serviceUrl: 
+         defaultZone: http://localhost:8761/eureka/
+   instance:
+      leaseRenewalIntervalInSeconds: 1
+      leaseExpirationDurationInSeconds: 2
+
+zuul:
+   routes:
+      customer: 
+         path: /api/secured/customers/**
+         serviceId: customer-service
+         stripPrefix: false
+      supplier: 
+         path: /api/suppliers/**
+         serviceId: supplier-service
+         stripPrefix: false
+         
+jwt:
+   secret: TOPSECRET
+   expiration: 604800
+   header: Authorization
+
+      

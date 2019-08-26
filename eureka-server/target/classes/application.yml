@@ -1,0 +1,15 @@
+server:  
+  port: ${PORT:8761}
+    
+eureka:  
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+  server:
+    enableSelfPreservation: false  
+    
+ribbon:
+   eureka:
+      enabled: false
+    
